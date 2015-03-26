@@ -1,25 +1,25 @@
 <?php
 /*
 * Writen By Zdravko Shishmanov
-* email: zdrsoft@gmail.com
-* 01.2011
+* email: zdrsoft {@} gmail.com
+* Last update: 25.03.2015
 */
 
 // Cache directory - define full path (with slash at the end)
-define(CACHE_DIRECTORY, '/home/gamesch/public_html/ru/cache_tmp/');
+define('CACHE_DIRECTORY', __DIR__ . '/tmp/');
 // set in seconds
-define(CACHING_TIME_SECONDS, 1286400);
+define('CACHING_TIME_SECONDS', 5);
 // set in seconds // Interval for clearing of garbage cache files
-define(CLEAR_OLD_CACHE_FILES_TIME_SECONDS, 11113600);
+define('CLEAR_OLD_CACHE_FILES_TIME_SECONDS', 91111111);
 
 //==============================================================================
 class CachePagesZDR
 {
-    var $cacheTime;
-    var $cacheFile;
+    private $cacheTime;
+    private $cacheFile;
     
     //==========================================================================
-    function CachePagesZDR() {
+    public function __construct() {
         $this->initCacheSettings();
         
         if($this->cacheFileNeedUpdate($this->cacheFile, $this->cacheTime)) {
@@ -31,7 +31,7 @@ class CachePagesZDR
     }
 
     //==========================================================================
-    function pageFooter() {
+    public function pageFooter() {
         $pageContent = ob_get_contents();
         $this->writeFile($this->cacheFile, $pageContent);
         ob_end_flush();
@@ -39,30 +39,27 @@ class CachePagesZDR
     }
 
     //==========================================================================
-    function initCacheSettings() {
-        $tmp = CACHE_DIRECTORY . $_SERVER["REQUEST_URI"];
-        if(strstr($tmp,'?')) {
-            $tmp = explode('?', $tmp);
-            $tmp = $tmp[0];
-        }
-        $tmp = explode('/', $tmp);
-        $tmp = end($tmp);
-        
-        $this->cacheFile = $this->initCachefILE();       
+    protected function initCacheSettings() {
+    	if (!is_writable(CACHE_DIRECTORY)) {
+    		echo 'Please make cache directory '.CACHE_DIRECTORY.' writeable.';
+			exit;
+    	}
+    	
+        $this->cacheFile = $this->initCacheFile();       
         $this->cacheTime = CACHING_TIME_SECONDS;
     }
 
     //==========================================================================
-    function initCachefILE() {
-        $tmpString = '';
+    protected function initCacheFile() {
         $tmp = CACHE_DIRECTORY . $_SERVER["REQUEST_URI"];
         if(strstr($tmp,'?')) {
             $tmp = explode('?', $tmp);
             $tmp = $tmp[0];
         }
         $tmp = explode('/', $tmp);
-        $tmp = end($tmp);
-        
+        $cacheFileName = end($tmp);
+
+        $tmpString = '';
         foreach($_GET as $key => $value) { 
             $tmpString .= $key.$value;
         }
@@ -71,13 +68,13 @@ class CachePagesZDR
             $tmpString .= $key.substr($value, 0, 10);
         }
         
-        $cacheFileTmp = CACHE_DIRECTORY . $tmp . '_' . md5($tmpString) . '_cache';
+        $cacheFileTmp = CACHE_DIRECTORY . $cacheFileName . '_' . md5($tmpString) . '_cache';
         
         return  $cacheFileTmp;
     }
 
     //==========================================================================
-    function clearOldCacheFiles() {
+    protected function clearOldCacheFiles() {
         $timeClearCacheFile = CACHE_DIRECTORY . 'clearCacheFileTimeFile.txt';
         if($this->cacheFileNeedUpdate($timeClearCacheFile, 
                                         CLEAR_OLD_CACHE_FILES_TIME_SECONDS)) {
@@ -95,13 +92,13 @@ class CachePagesZDR
     }
 
     //==========================================================================
-    function printCachedPage() {
+    private function printCachedPage() {
         include($this->cacheFile);
         exit;
     }
 
     //==========================================================================
-    function cacheFileNeedUpdate($filePath, $timeInterval) {
+    protected function cacheFileNeedUpdate($filePath, $timeInterval) {
         if (!file_exists($filePath)) {
             return true;
         }
@@ -114,7 +111,7 @@ class CachePagesZDR
     }
 
     //==========================================================================
-    function writeFile($filePath, $content) {
+    protected function writeFile($filePath, $content) {
         $fp = fopen($filePath, 'w'); 
         fwrite($fp, $content); 
         fclose($fp);
@@ -122,5 +119,4 @@ class CachePagesZDR
 }
 
 $cacheZDR = new CachePagesZDR();
-
 ?>

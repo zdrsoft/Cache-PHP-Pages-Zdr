@@ -1,6 +1,6 @@
 <?php
 
-include("cachePagesZdr.php");
+include("CachePagesZDR.php");
 
 phpinfo();
 
