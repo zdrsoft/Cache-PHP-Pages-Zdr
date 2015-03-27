@@ -1,22 +1,9 @@
 <table width="750" border="0" cellpadding="0" cellspacing="0" align="center"><tbody><tr><td>
-# **"Cache PHP Pages Zdr"** - speed up your web site,  
+**"Cache PHP Pages Zdr"** - speed up your web site,  
  decrease CPU load on your web hosting account  
 Free PHP script
 
 **Improve your web site with this highly improved algorithm. Works with dynamic web pages and frequently used POST and GET parameters.**If your web hosting provider limits your web hosting account (the web sites usually use shared hosting, where limitations are applied) by high CPU load, MySQL connections per hour or the execution time of your PHP scripts is too long, you could resolve this problems and improve the productivity of your PHP scripts using this highly effective PHP accelerator - "Cache PHP Pages Zdr" script. The script is suitable for any kind of PHP sites.
-
-"Cache PHP Pages Zdr" script is free for personal and commercial usage. Free download of the script is available. If you want**professional installation** of the script for your dynamic web, please make estimation request for installation on your web site.  
-Email:<script type="text/javascript">var z1 = 'z'+'d'+'rsof'+'t'; var z2 = '@gm'; document.write('<a href="mailto:'+z1 + z2 + 'ail.c' + 'om" >'+z1 + z2 + 'ail.c' + 'om</a>');</script>.
-
-**DOWNLOAD:** "Cache PHP Pages Zdr" - speed up your web site, decrease CPU load on your web hosting account - Free php script<table width="700" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><div align="center">![Speed meter](./README_files/speed_meter.jpg)</div></td><td><div style="color: green;font-weight: bold;" align="center">![Green Cache Pages ZDR](./README_files/green_cache_pages_zdr.jpg)  
-Green Planet  
-Low Computing - Low Power usage  
-"Cache PHP Pages Zdr"</div></td></tr></tbody></table>
-
-You can visit forum related to**"Cache PHP Pages Zdr"**.  
-OFFICIAL SITE:[http://www.webtoolbag.com](http://www.webtoolbag.com/forum/)/  
-**FORUM:**[http://www.webtoolbag.com/forum/](http://www.webtoolbag.com/forum/)  
-**DOWNLOAD:** "Cache PHP Pages Zdr" - speed up your web site, decrease CPU load on your web hosting account - Free php script
 
 **TIPS**  
 =====================  
@@ -44,11 +31,7 @@ $cacheZDR->pageCacheEnd();
 **Disclaimer of Warranty.  
 THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.**
 
-**DOWNLOAD:** "Cache PHP Pages Zdr" - speed up your web site, decrease CPU load on your web hosting account - Free php script
-
 Copyright (C) Zdravko Shishmanov  
 Country: Bulgaria/EU  
-Email:<script type="text/javascript">var z1 = 'zdr'+'s'+'oft'; var z2 = '@gm'; document.write('<a href="mailto:'+z1 + z2 + 'ail.c' + 'om" >'+z1 + z2 + 'ail.c' + 'om</a>');</script>  
-[http://www.webtoolbag.com/](http://www.webtoolbag.com/)  
 
 </td></tr></tbody></table>
