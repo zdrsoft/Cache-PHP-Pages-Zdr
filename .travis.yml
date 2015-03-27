@@ -20,4 +20,4 @@ matrix:
 before_script:
   - cd tests
 
-script: phpunit --colors --no-globals-backup --exclude-group mssql,oci AllTest.php
+script: phpunit --colors --no-globals-backup CachePagesZDRTest.php
