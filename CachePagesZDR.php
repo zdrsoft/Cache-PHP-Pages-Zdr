@@ -10,16 +10,16 @@ define('CACHE_DIRECTORY', __DIR__ . '/tmp/');
 // set in seconds
 define('CACHING_TIME_SECONDS', 5);
 // set in seconds // Interval for clearing of garbage cache files
-define('CLEAR_OLD_CACHE_FILES_TIME_SECONDS', 91111111);
+define('CLEAR_OLD_CACHE_FILES_TIME_SECONDS', 604800); // One week 604800 seconds
 
 //==============================================================================
 class CachePagesZDR
 {
-    private $cacheTime;
-    private $cacheFile;
+    protected $cacheTime;
+    protected $cacheFile;
     
     //==========================================================================
-    public function __construct() {
+    public function pageCacheStart() {
         $this->initCacheSettings();
         
         if($this->cacheFileNeedUpdate($this->cacheFile, $this->cacheTime)) {
@@ -31,22 +31,24 @@ class CachePagesZDR
     }
 
     //==========================================================================
-    public function pageFooter() {
+    public function pageCacheEnd() {
         $pageContent = ob_get_contents();
         $this->writeFile($this->cacheFile, $pageContent);
         ob_end_flush();
-        $this->clearOldCacheFiles();
+        $this->clearOldCacheFiles(CACHE_DIRECTORY, CLEAR_OLD_CACHE_FILES_TIME_SECONDS);
     }
 
     //==========================================================================
     protected function initCacheSettings() {
     	if (!is_writable(CACHE_DIRECTORY)) {
     		echo 'Please make cache directory '.CACHE_DIRECTORY.' writeable.';
-			exit;
+			return false;
     	}
     	
         $this->cacheFile = $this->initCacheFile();       
         $this->cacheTime = CACHING_TIME_SECONDS;
+        
+        return true;
     }
 
     //==========================================================================
@@ -68,27 +70,34 @@ class CachePagesZDR
             $tmpString .= $key.substr($value, 0, 10);
         }
         
-        $cacheFileTmp = CACHE_DIRECTORY . $cacheFileName . '_' . md5($tmpString) . '_cache';
+        $cacheFileNameRes = CACHE_DIRECTORY . 
+        					$cacheFileName  . 
+        								'_' . 
+        					md5($tmpString) . 
+        							'_cache';
         
-        return  $cacheFileTmp;
+        return  $cacheFileNameRes;
     }
 
     //==========================================================================
-    protected function clearOldCacheFiles() {
-        $timeClearCacheFile = CACHE_DIRECTORY . 'clearCacheFileTimeFile.txt';
+    protected function clearOldCacheFiles($cacheDirectory, $timeInterval) {
+    	$result = false;
+        $timeClearCacheFile = $cacheDirectory . 'clearCacheFileTimeFile.txt';
         if($this->cacheFileNeedUpdate($timeClearCacheFile, 
-                                        CLEAR_OLD_CACHE_FILES_TIME_SECONDS)) {
-            $dir = dir(CACHE_DIRECTORY);
+                                        $timeInterval)) {
+            $dir = dir($cacheDirectory);
             while (false !== ($entry = $dir->read())) {
                 if($entry=='.' || $entry=='..') continue;
                   
-                $fileNameTmp =  CACHE_DIRECTORY . $entry;
+                $fileNameTmp =  $cacheDirectory . $entry;
                 unlink($fileNameTmp);
             }
             
             $dir->close();
-            $this->writeFile($timeClearCacheFile, '');
+            $result = $this->writeFile($timeClearCacheFile, '');
         }
+        
+        return $result;
     }
 
     //==========================================================================
@@ -113,10 +122,10 @@ class CachePagesZDR
     //==========================================================================
     protected function writeFile($filePath, $content) {
         $fp = fopen($filePath, 'w'); 
-        fwrite($fp, $content); 
+        $res = fwrite($fp, $content); 
         fclose($fp);
+        
+        return $res;
     }
 }
-
-$cacheZDR = new CachePagesZDR();
 ?>
