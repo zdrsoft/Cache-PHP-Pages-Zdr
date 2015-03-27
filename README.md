@@ -16,7 +16,7 @@ No hard programming skills for usage are required.
 ============  
 1\. Windows / Unix  
 2\. Apache/IIS  
-3\. PHP 5.2 and above  
+3\. PHP 5.3 and above  
 
 **INSTALLATION**  
 ============  
