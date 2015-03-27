@@ -62,7 +62,7 @@ class CachePagesZDRTest extends PHPUnit_Framework_TestCase {
 		
 		if (!file_exists($tmpDirectoryPath)) {
 			$this->assertEquals(true, mkdir($tmpDirectoryPath, 0777));			
-			$this->assertEquals(true, $this->cachePagesZdr->writeFileCall($tmpDirectoryOldFileForCleaning, " 1 "));
+			$this->cachePagesZdr->writeFileCall($tmpDirectoryOldFileForCleaning, " 1 ");
 		}
 		
 		$this->assertEquals(0, $this->cachePagesZdr->clearOldCacheFilesCall($tmpDirectoryPath, 0));		
