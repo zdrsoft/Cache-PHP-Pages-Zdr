@@ -1,5 +1,5 @@
-<table width="750" border="0" cellpadding="0" cellspacing="0" align="center"><tbody><tr><td>
-**"Cache PHP Pages Zdr"** - speed up your web site,  
+
+# **"Cache PHP Pages Zdr"** - speed up your web site,  
  decrease CPU load on your web hosting account  
 Free PHP script
 
@@ -33,5 +33,3 @@ THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
 
 Copyright (C) Zdravko Shishmanov  
 Country: Bulgaria/EU  
-
-</td></tr></tbody></table>
